@@ -19,13 +19,13 @@ gp-def: ## git push with default message
 	git add .; git commit -m "learn-lang"; git push;
 
 CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-update-branch:  ## update master branch
+update-branch:  ## update main branch
 	git fetch --all;
 	git checkout develop; git reset --hard origin/develop;
-	git checkout master; git reset --hard origin/master;
+	git checkout main; git reset --hard origin/main;
 
 	git checkout $(CURRENT_BRANCH);
-	git diff --name-only develop master
+	git diff --name-only develop main
 
 apk: ## build android apk with timestamp
 	@echo "Generating flet.yaml from .env..."

@@ -40,13 +40,13 @@ gp-def: ## git push with default ia-mcps message
 	git add .; git commit -m "ia-mcps"; git push;
 
 CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-update-branch:  ## update master branch
+update-branch:  ## update main branch
 	git fetch --all;
 	git checkout develop; git reset --hard origin/develop;
-	git checkout master; git reset --hard origin/master;
+	git checkout main; git reset --hard origin/main;
 
 	git checkout $(CURRENT_BRANCH);
-	git diff --name-only develop master
+	git diff --name-only develop main
 
 venv: ## cómo crear/activar el venv de backend_web (make NO puede activarlo: se pierde al salir de la subshell)
 	@echo "# linux / wsl"
