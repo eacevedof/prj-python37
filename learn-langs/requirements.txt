@@ -17,11 +17,11 @@ python-dotenv~=1.2.3
 
 # flet - Cross-platform UI framework (Windows, Mac, Linux, Web, Mobile)
 # Used in: main.py, ddd/vocabulary/infrastructure/ui/
-flet==1.1.1
+flet==1.1.3
 
 # flet-audio - reproductor de audio multiplataforma (Windows/Android); sustituye a pygame
 # Used in: ddd/shared/infrastructure/components/audio_player.py
-flet-audio==1.1.1
+flet-audio==1.1.3
 
 # ============================================================================
 # DATABASE
@@ -37,21 +37,19 @@ aiosqlite~=0.22.1
 
 # pydantic - Data validation using Python type annotations
 # Used in: DTOs across the application
-pydantic~=2.13.5
+pydantic~=2.14.4
 
 # ============================================================================
 # AI/ML
 # ============================================================================
 
 # openai - https://developers.openai.com/api/reference/python/resources/images/methods/generate
-# TOPADO a 2.x (ultima de la serie: 2.54.0) y NO a la 3.x: la 3.x exige jiter>=0.16
-# y en pypi.flet.dev -- el unico indice con wheels Android, PyPI no publica ninguno --
-# el jiter mas nuevo es 0.15.0, asi que el APK no compila con openai 3.x. openai se usa
-# EN el movil (genera la locucion la primera vez que suena una tarjeta), por lo que no
-# se puede excluir del empaquetado. La 2.54.0 pide jiter>=0.10 (cabe) y no tiene
-# avisos de seguridad (OSV, 2026-09-17).
-# Revisar cuando flet publique jiter>=0.16 -> entonces subir aqui y en pyproject.toml.
-openai~=2.54.0
+# openai se usa EN el movil (genera la locucion la primera vez que suena una tarjeta),
+# asi que se empaqueta en el APK y su jiter tiene que tener wheel Android en
+# pypi.flet.dev (PyPI no publica ninguno). La 3.x pide jiter>=0.16,<1: desde 2026-11-25
+# pypi.flet.dev tiene jiter 0.19.0 (cp312 android arm64), asi que ya cabe. Firmas usadas
+# (chat.completions, images.generate, audio.speech, audio.transcriptions) comprobadas en 3.59.0.
+openai~=3.59.0
 
 # ============================================================================
 # UTILITIES
@@ -83,4 +81,4 @@ pytest~=9.2.0
 
 # pytest-asyncio - Async test support for pytest
 # Required for: Testing async functions
-pytest-asyncio~=1.4.0
+pytest-asyncio~=1.5.0
